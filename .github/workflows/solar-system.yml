@@ -9,8 +9,8 @@ on:
 
 env:
   MONGO_URI: 'mongodb+srv://naveenhima91:<db_password>@naveen.ywia7.mongodb.net/?retryWrites=true&w=majority&appName=Naveen'
-  MONGO_USERNAME: naveenhima91
-  MONGO PASSWORD: ehpUIG1PAZcPLDaM  
+  MONGO_USERNAME: ${{ vars.MONGO_USERNAME}}
+  MONGO_PASSWORD: ${{ secrets.MONGO_PASSWORD}} 
     
 jobs:
     unit-testing:
