@@ -9,7 +9,7 @@ on:
 
 env:
   MONGO_URI: 'mongodb+srv://supercluster.d83jj.mongodb.net/superData'
-  MONGO_USERNAME: ${{ vars.MONGO USERNAME }}
+  MONGO_USERNAME: superuser
   MONGO PASSWORD: ${{ secrets.MONGO_PASSWORD }}       
     
 jobs:
