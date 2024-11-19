@@ -8,19 +8,17 @@ on:
       - 'features/*'
 
 env:
-  MONGO_URI: ${{ secrets.MONGO_URI }}  # Ensure this is stored in GitHub Secrets
-  MONGO_USERNAME: ${{ secrets.MONGO_USERNAME }}  # If needed, store username as secret
-  MONGO_PASSWORD: ${{ secrets.MONGO_PASSWORD }}  # Store MongoDB password as secret
+  MONGO_URI: mongodb+srv://naveenhima91:ehpUlGIPAZcPLDaM@naveen.ywia7.mongodb.net/test?retryWrites=true&w=majority  # Add your Mongo URI here
 
 jobs:
   install:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     steps:
       - name: Setup AtlasCLI
         uses: mongodb/atlas-github-action@v0.2.0
       - name: Use AtlasCLI
         shell: bash
-        run: atlas --version # Print Atlas CLI Version
+        run: atlas --version  # This will print the Atlas CLI version
 
   unit-testing:
     runs-on: ubuntu-latest
