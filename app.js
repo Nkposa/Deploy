@@ -12,15 +12,13 @@ app.use(cors());
 
 // MongoDB credentials (Replace with your actual credentials)
 const MONGO_URI = 'mongodb+srv://naveenhima91:ehpUIG1PAZcPLDaM@naveen.ywia7.mongodb.net/?retryWrites=true&w=majority&appName=Naveen';
-const MONGO_USERNAME = 'naveenhima91';
-const MONGO_PASSWORD = 'ehpUIG1PAZcPLDaM';
 
 // Connect to MongoDB
 mongoose.connect(MONGO_URI, {
-    user: MONGO_USERNAME,
-    pass: MONGO_PASSWORD,
     useNewUrlParser: true,
-    useUnifiedTopology: true
+    useUnifiedTopology: true,
+    useCreateIndex: true,  // Fix deprecation warning for indexes
+    useFindAndModify: false, // Fix deprecation warning for findAndModify
 }, function(err) {
     if (err) {
         console.log("Error connecting to MongoDB: " + err);

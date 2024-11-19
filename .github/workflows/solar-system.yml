@@ -1,38 +1,46 @@
 name: Solar System Workflow
 
-on: 
+on:
   workflow_dispatch:
   push:
     branches:
       - main
-      - 'featrues/*'
+      - 'features/*'
 
 env:
-  MONGO_URI: 'mongodb+srv://naveenhima91:<db_password>@naveen.ywia7.mongodb.net/?retryWrites=true&w=majority&appName=Naveen'
-  MONGO_USERNAME: ${{ vars.MONGO_USERNAME}}
-  MONGO_PASSWORD: ${{ secrets.MONGO_PASSWORD}} 
-    
-jobs:
-    unit-testing:
-        name: Unit Testing-1
-        runs-on: ubuntu-latest
-        steps:
-        - name: Checkout Repository
-          uses: actions/checkout@v4
+  MONGO_URI: 'mongodb+srv://<username>:<password>@<cluster-name>.mongodb.net/<database>?<options>'
+  MONGO_USERNAME: ${{ vars.MONGO_USERNAME }}
+  MONGO_PASSWORD: ${{ secrets.MONGO_PASSWORD }}
 
-        - name: Setup NodeJS Version
-          uses: actions/setup-node@v3
-          with:
-            node-version: 20
-    
-        - name: Install Dependencies
-          run: npm install
-    
-        - name: Unit Testing
-          run: npm test
-          
-        - name: Archive Test Result
-          uses: actions/upload-artifact@v3
-          with:
-            name: Mocha-Test-Result
-            path: test-results.xml
+jobs:
+  install:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Setup AtlasCLI
+        uses: mongodb/atlas-github-action@v0.2.0
+      - name: Use AtlasCLI
+        shell: bash
+        run: atlas --version # Print Atlas CLI Version
+
+  unit-testing:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup NodeJS Version
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Unit Testing
+        run: npm test
+
+      - name: Archive Test Result
+        uses: actions/upload-artifact@v3
+        with:
+          name: Mocha-Test-Result
+          path: test-results.xml
