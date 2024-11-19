@@ -8,7 +8,7 @@ on:
       - 'featrues/*'
 
 env:
-  MONGO_URI: 'mongodb+srv://naveenhima91:ehpUIG1PAZcPLDaM@naveen.ywia7.mongodb.net/?retryWrites=true&w=majority&appName=Naveen'
+  MONGO_URI: 'mongodb+srv://naveenhima91.ywia7.mongodb.net/Naveen'
   MONGO_USERNAME: naveenhima91
   MONGO PASSWORD: ehpUIG1PAZcPLDaM  
     
