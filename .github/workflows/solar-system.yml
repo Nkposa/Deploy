@@ -8,13 +8,13 @@ on:
       - 'features/*'
 
 env:
-  MONGO_URI: 'mongodb+srv://<username>:<password>@<cluster-name>.mongodb.net/<database>?<options>'
-  MONGO_USERNAME: ${{ vars.MONGO_USERNAME }}
-  MONGO_PASSWORD: ${{ secrets.MONGO_PASSWORD }}
+  MONGO_URI: ${{ secrets.MONGO_URI }}  # Ensure this is stored in GitHub Secrets
+  MONGO_USERNAME: ${{ secrets.MONGO_USERNAME }}  # If needed, store username as secret
+  MONGO_PASSWORD: ${{ secrets.MONGO_PASSWORD }}  # Store MongoDB password as secret
 
 jobs:
   install:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
       - name: Setup AtlasCLI
         uses: mongodb/atlas-github-action@v0.2.0
