@@ -8,9 +8,9 @@ on:
       - 'featrues/*'
 
 env:
-  MONGO_URI: 'mongodb+srv://supercluster.d83jj.mongodb.net/superData'
-  MONGO_USERNAME: superuser
-  MONGO PASSWORD: ${{ secrets.MONGO_PASSWORD }}       
+  MONGO_URI: 'mongodb+srv://naveenhima91:ehpUIG1PAZcPLDaM@naveen.ywia7.mongodb.net/?retryWrites=true&w=majority&appName=Naveen'
+  MONGO_USERNAME: naveenhima91
+  MONGO PASSWORD: ehpUIG1PAZcPLDaM  
     
 jobs:
     unit-testing:
