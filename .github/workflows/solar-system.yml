@@ -20,16 +20,7 @@ jobs:
         shell: bash
         run: atlas --version  # This will print the Atlas CLI version
 
-  unit-testing:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
-
-      - name: Setup NodeJS Version
-        uses: actions/setup-node@v3
-        with:
-          node-version: 20
+  #
 
       - name: Install Dependencies
         run: npm install
