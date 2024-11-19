@@ -8,19 +8,28 @@ on:
       - 'features/*'
 
 env:
-  MONGO_URI: mongodb+srv://naveenhima91:ehpUlGIPAZcPLDaM@naveen.ywia7.mongodb.net/test?retryWrites=true&w=majority  # Add your Mongo URI here
+  MONGO_URI: ${{ secrets.MONGO_URI }}  # Securely stored URI in GitHub secrets
 
 jobs:
   install:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     steps:
       - name: Setup AtlasCLI
         uses: mongodb/atlas-github-action@v0.2.0
       - name: Use AtlasCLI
         shell: bash
-        run: atlas --version  # This will print the Atlas CLI version
+        run: atlas --version  # Print Atlas CLI Version
 
-  #
+  unit-testing:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup NodeJS Version
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
 
       - name: Install Dependencies
         run: npm install
