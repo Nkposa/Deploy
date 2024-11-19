@@ -6,12 +6,17 @@ const mongoose = require("mongoose");
 const app = express();
 const cors = require('cors');
 
+// Read MongoDB URI from environment variables
+const MONGO_URI = process.env.MONGO_URI;
+
+if (!MONGO_URI) {
+  console.error("MONGO_URI environment variable is not set.");
+  process.exit(1);  // Exit the process if the MongoDB URI is not set
+}
+
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, '/')));
 app.use(cors());
-
-// MongoDB credentials (Replace with your actual credentials)
-const MONGO_URI = 'mongodb+srv://naveenhima91:ehpUIG1PAZcPLDaM@naveen.ywia7.mongodb.net/?retryWrites=true&w=majority&appName=Naveen';
 
 // Connect to MongoDB
 mongoose.connect(MONGO_URI, {
