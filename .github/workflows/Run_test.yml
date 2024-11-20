@@ -5,7 +5,9 @@ on:
   push:
   
 env:
-  MONGO_URI: ${{ secrets.MONGO_URI }}  # Securely stored URI in GitHub secrets    
+  MONGO_URI: '${{ vars.MONGO_URI }}'  # Securely stored URI in GitHub secrets    
+  MONGO_PASSWORD: '${{vars.MONGO_PASSWORD}}'
+  MONGO_USERNAME: '${{vars.MONGO_USERNAME}}'
     
 jobs:
     unit-testing:
