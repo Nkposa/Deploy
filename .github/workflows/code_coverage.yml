@@ -6,7 +6,7 @@ on:
 env:
     mongo_url: '${{secrets.MONGO_URI}}'
     mongo_username: '${{secrets.MONGO_USERNAME}}' 
-    mongo_pwd: '${{MONGO_PASSWORD}}' 
+    mongo_pwd: '${{secrets.MONGO_PASSWORD}}' 
     
 jobs:
     code_coverage:
