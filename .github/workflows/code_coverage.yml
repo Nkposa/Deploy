@@ -27,9 +27,9 @@ jobs:
               run: npm run coverage
               
             - name: upload artificats
-              continue-on-error: true
+              if: steps.test-check.outcome == 'success' || steps.test-check.outcome == 'failure'
               uses: actions/upload-artifact@v3
               with:
+                name: naveen-art
                 path: coverage
                 retention-days: 5
-                  
