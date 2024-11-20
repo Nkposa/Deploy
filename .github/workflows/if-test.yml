@@ -1,0 +1,67 @@
+name: Solar System Workflow
+
+on:
+  workflow_dispatch:
+  push:
+  
+  
+env:
+  MONGO_URI: '${{ vars.MONGO_URI }}'  # Securely stored URI in GitHub secrets    
+  MONGO_PASSWORD: '${{vars.MONGO_PASSWORD}}'
+  MONGO_USERNAME: '${{vars.MONGO_USERNAME}}'
+    
+jobs:
+    unit-testing:
+        name: Unit Testing
+        strategy:
+          matrix:
+            os: [ubuntu-latest, windows-latest]
+            node-js: [18, 15]
+        runs-on: ${{matrix.os}}    
+        steps:
+        - name: Checkout Repository
+          uses: actions/checkout@v4
+
+        - name: Setup NodeJS Version
+          uses: actions/setup-node@v3
+          with:
+            node-version: ${{matrix.node-js}}
+    
+        - name: Install Dependencies
+          run: npm install
+    
+        - name: Unit Testing
+          continue-on-error: true
+          run: npm test
+          
+        - name: Archive Test Result
+          continue-on-error: true
+          uses: actions/upload-artifact@v3
+          with:
+            name: Mocha-Test-Result
+            path: test-results.xml
+    code_coverage:
+        name: running code coverage
+        runs-on: ubuntu-latest
+        steps:
+            - name: check repo
+              uses: actions/checkout@v4
+
+            - name: setup node j
+              uses: actions/setup-node@v3
+              
+            - name: install dependencies
+              run:  npm install
+              
+            - name: run code coverage
+              continue-on-error: true
+              id: test-check
+              run: npm run coverage
+              
+            - name: upload artificats
+              if: steps.test-check.outcome == 'success' || steps.test-check.outcome == 'failure'
+              uses: actions/upload-artifact@v3
+              with:
+                name: naveen-art
+                path: coverage
+                retention-days: 5
