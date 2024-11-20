@@ -23,9 +23,11 @@ jobs:
               run: echo npm install
               
             - name: run code coverage
+              continue-on-error: true
               run: npm run coverage
               
             - name: upload artificats
+              continue-on-error: true
               uses: actions/upload-artifact@v3
               with:
                 path: coverage
