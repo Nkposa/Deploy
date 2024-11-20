@@ -4,9 +4,9 @@ on:
     workflow_dispatch: 
 
 env:
-    mongo_url: '${{secrets.MONGO_URI}}'
-    mongo_username: '${{secrets.MONGO_USERNAME}}' 
-    mongo_pwd: '${{secrets.MONGO_PASSWORD}}' 
+  MONGO_URI: '${{ vars.MONGO_URI }}'  # Securely stored URI in GitHub secrets    
+  MONGO_PASSWORD: '${{vars.MONGO_PASSWORD}}'
+  MONGO_USERNAME: '${{vars.MONGO_USERNAME}}'
     
 jobs:
     code_coverage:
