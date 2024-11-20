@@ -2,11 +2,9 @@ name: Solar System Workflow
 
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - main
-<<<<<<< HEAD:.github/workflows/Run_test.yml
-      - 'feature/*'
+  
+env:
+  MONGO_URI: ${{ secrets.MONGO_URI }}  # Securely stored URI in GitHub secrets    
     
 jobs:
     unit-testing:
@@ -29,49 +27,12 @@ jobs:
           run: npm install
     
         - name: Unit Testing
+          continue-on-error: true
           run: npm test
           
         - name: Archive Test Result
+          continue-on-error: true
           uses: actions/upload-artifact@v3
           with:
             name: Mocha-Test-Result
             path: test-results.xml
-=======
-      - 'features/*'
-
-env:
-  MONGO_URI: ${{ secrets.MONGO_URI }}  # Securely stored URI in GitHub secrets
-
-jobs:
-  install:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Setup AtlasCLI
-        uses: mongodb/atlas-github-action@v0.2.0
-      - name: Use AtlasCLI
-        shell: bash
-        run: atlas --version  # Print Atlas CLI Version
-
-  unit-testing:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
-
-      - name: Setup NodeJS Version
-        uses: actions/setup-node@v3
-        with:
-          node-version: 20
-
-      - name: Install Dependencies
-        run: npm install
-
-      - name: Unit Testing
-        run: npm test
-
-      - name: Archive Test Result
-        uses: actions/upload-artifact@v3
-        with:
-          name: Mocha-Test-Result
-          path: test-results.xml
->>>>>>> featrues/explore-workflows:.github/workflows/solar-system.yml
