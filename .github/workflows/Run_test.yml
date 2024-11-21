@@ -86,7 +86,7 @@ jobs:
           username: nkposa
           password: HimaB@96.
         
-      - name: check login
+      - name: check loginto docker
         run: echo logged in successfully 
 
       - name: Build and push
