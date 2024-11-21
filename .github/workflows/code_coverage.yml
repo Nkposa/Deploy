@@ -2,7 +2,7 @@ name: Code Coverage
 
 on:
     workflow_dispatch: 
-    push:
+    
 
 env:
   MONGO_URI: '${{ vars.MONGO_URI }}'  # Securely stored URI in GitHub secrets    
