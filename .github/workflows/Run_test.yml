@@ -12,12 +12,7 @@ env:
 jobs:
     unit-testing:
         name: Unit Testing
-        runs-on: ubuntu-20.04
-  #      strategy:
-  #        matrix:
-  #          os: [ubuntu-latest, windows-latest]
-  #          node-js: [18, 15]
-  #      runs-on: ${{matrix.os}}    
+        runs-on: ubuntu-20.04 
         steps:
         - name: Checkout Repository
           uses: actions/checkout@v4
@@ -92,7 +87,8 @@ jobs:
           password: HimaB@96.
         
       - name: check login
-        run: echo logged in successfully   
+        run: echo logged in successfully 
+
       - name: Build and push
         uses: docker/build-push-action@v6
         with:

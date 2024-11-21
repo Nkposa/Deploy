@@ -64,12 +64,10 @@ jobs:
                 name: naveen-art
                 path: coverage
                 retention-days: 5
-
-
-  Docker:
-    name: login to Docker
-    runs-on: ubuntu-latest
-    steps:
+    Docker:
+      name: login to Docker
+      runs-on: ubuntu-latest
+      steps:
       - name: Login to Docker Hub
         uses: docker/login-action@v3
         with:
