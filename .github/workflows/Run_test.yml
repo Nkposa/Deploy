@@ -25,8 +25,15 @@ jobs:
           uses: actions/setup-node@v3
           with:
             node-version: ${{matrix.node-js}}
+          
+        - name: cache npm dependenices
+          uses: actions@cache@v3
+          with:
+            path: npm-modules
+            key: ${{runner.os}}-npm-modules-${{hashFiles('packages-lock.json')}}     
     
         - name: Install Dependencies
+          continue-on-error: true
           run: npm install
     
         - name: Unit Testing

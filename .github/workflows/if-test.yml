@@ -59,7 +59,7 @@ jobs:
               run: npm run coverage
               
             - name: upload artificats
-              if: steps.test-check.outcome == 'success' || steps.test-check.outcome == 'failure'
+              if: always()
               uses: actions/upload-artifact@v3
               with:
                 name: naveen-art
